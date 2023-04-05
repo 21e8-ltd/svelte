@@ -12,6 +12,7 @@ type AnimationFn = (node: Element, { from, to }: { from: PositionRect; to: Posit
 
 export function create_animation(node: Element & ElementCSSInlineStyle, from: PositionRect, fn: AnimationFn, params) {
 	if (!from) return noop;
+	if (params.disabled) return noop;
 
 	const to = node.getBoundingClientRect();
 	if (from.left === to.left && from.right === to.right && from.top === to.top && from.bottom === to.bottom) return noop;
